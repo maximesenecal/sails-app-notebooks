@@ -72,11 +72,14 @@ angular.module("notebookApp", [])
        * GET /:model/:id/:association
        */
       $scope.getNotebookTodos = function(notebook_id) {
-        $http.get('/notebook/' + notebook_id + '/todos').then(function(response) {
-          var todos = response.data;
-          console.log("Loading " + todos.length + " todos to notebook : " + notebook_id + " from API !");
-          return todos;
-        });
+        console.log('>>>>>>>>>>>',notebook_id);
+
+        // $http.get('/notebook/' + notebook_id + '/todos').then(function(response) {
+
+          //   var todosrrrrrr = response.data;
+        //   console.log("Loading " + todos.length + " todos to notebook : " + notebook_id + " from API !");
+        //   return todos;
+        // });
       };
 
       $scope.addTodo = function(notebook){
