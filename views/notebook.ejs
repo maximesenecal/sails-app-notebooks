@@ -1,0 +1,42 @@
+<div class="default-page" ng-controller="MainController">
+  <div class="header">
+    <h1 id="main-title" class="container"><%= __('This is your notebooks') %></h1>
+    <h3 class="container"><%= __("You're looking at:") %> <code><%= view.pathFromApp + '.' +view.ext %></code></h3>
+  </div>
+
+  <div class="main container clearfix">
+
+    <div class="add">
+      <a ng-click="addNotebook()">+ Ajouter un notebook</a>
+    </div>
+
+    <div ng-class="{'editing-notebook' : editing }" ng-repeat="notebook in notebooks">
+      <div class="links clearfix">
+        <h3 ng-click="editing = !editing">{{ notebook.title }}</h3>
+        <input ng-show="editing" ng-blur="editing = false" ng-model="notebook.title"></input>
+
+          <ul class="link-list">
+            <h4>Todos</h4>
+
+              <div ng-repeat="todo in getNotebookTodos(notebook.id)">
+                <a target="_blank" href="#"><li>{{ todo.title }}</li></a>
+              </div>
+
+            <a href="" ng-click="addTodo(notebook)">add new todo</a>
+
+            <h4>Informations sur le notebook</h4>
+            <li>{{ notebook.updatedAt }}</li>
+            <li>{{ notebook.createdAt }}</li>
+            <h4>Actions du notebook</h4>
+            <div class="actions">
+              <a href="" ng-click="saveNotebook(notebook, $index)">save</a>
+              <a href="" ng-click="editing = !editing">edit</a>
+              <a href="" ng-click="deleteNotebook(notebook, $index)">delete</a>
+            </div>
+          </ul>
+
+      </div>
+    </div>
+
+  </div>
+</div>
