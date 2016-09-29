@@ -18,9 +18,9 @@
           <ul class="link-list">
             <h4>Todos</h4>
 
-              <div ng-repeat="todo in getNotebookTodos(notebook.id)">
-                <a target="_blank" href="#"><li>{{ todo.title }}</li></a>
-              </div>
+                <div ng-repeat="todo in getNotebookTodos(notebook.id)">
+                  <a target="_blank" href="#"><li>{{ todo.title }}</li></a>
+                </div>
 
             <a href="" ng-click="addTodo(notebook)">add new todo</a>
 
@@ -29,7 +29,7 @@
             <li>{{ notebook.createdAt }}</li>
             <h4>Actions du notebook</h4>
             <div class="actions">
-              <a href="" ng-click="saveNotebook(notebook, $index)">save</a>
+              <a href="" ng-click="saveNotebook(notebook)">save</a>
               <a href="" ng-click="editing = !editing">edit</a>
               <a href="" ng-click="deleteNotebook(notebook, $index)">delete</a>
             </div>

@@ -71,11 +71,10 @@ angular.module("notebookApp", [])
        * Blueprint API populate where
        * GET /:model/:id/:association
        */
-      var todos = [];
       $scope.getNotebookTodos = function(notebook_id) {
         $http.get('/notebook/' + notebook_id + '/todos').then(function(response) {
-          console.log("Loading todos (Notebook : " + notebook_id + ") from API !");
-          todos = response.data;
+          var todos = response.data;
+          console.log("Loading " + todos.length + " todos to notebook : " + notebook_id + " from API !");
           return todos;
         });
       };
