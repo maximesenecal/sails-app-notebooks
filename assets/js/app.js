@@ -7,7 +7,7 @@ angular.module("notebookApp", [])
   .controller("MainController", function ($scope, $http) {
 
       $scope.userid = null;
-      $scope.notebooks = null;
+      $scope.notebooks = [];
       //TODO: refresh or call automatically to load new notebooks from database
       activate();
 
