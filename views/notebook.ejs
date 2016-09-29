@@ -15,10 +15,10 @@
         <h3 ng-click="editing = !editing">{{ notebook.title }}</h3>
         <input ng-show="editing" ng-blur="editing = false" ng-model="notebook.title"></input>
 
-          <ul class="link-list" ng-init="todos = getNotebookTodos(notebook.id)">
+          <ul class="link-list">
             <h4>Todos</h4>
 
-                <div ng-repeat="todo in todos">
+                <div ng-repeat="todo in todos[notebook.id]">
                   <a target="_blank" href="#"><li>{{ todo.title }}</li></a>
                 </div>
 
