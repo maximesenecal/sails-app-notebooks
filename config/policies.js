@@ -29,11 +29,11 @@ module.exports.policies = {
   '*': true,
 
   'TodoController': {
-    //  '*': 'isAuthenticated'
+      '*': 'isAuthenticated'
   },
 
   'NotebookController': {
-    // '*': 'isAuthenticated'
+     '*': 'isAuthenticated'
   }
 
   /***************************************************************************

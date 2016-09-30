@@ -1,29 +1,31 @@
 <div class="navbar-fixed">
   <nav class="cyan darken-4" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo center">Neverwrite - Todo list with Sails</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo center">Neverwrite</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="/login"><%= __('Login') %></a></li>
-        <li><a href="/logout"><%= __('Logout') %></a></li>
+        <li><a href="/signup"><%= __('Signup') %></a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="#"><a href="/login"><%= __('Login') %></a></a></li>
+        <li><a href="/login"><%= __('Login') %></a></li>
+        <li><a href="/signup"><%= __('Signup') %></a></li>
       </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons"> > </i></a>
     </div>
   </nav>
 </div>
 
-<div class="default-page" ng-controller="MainController">
+<div ng-controller="MainController">
   <div class="header">
     <h1 id="main-title" class="container"><%= __('Hello, this is your notebooks') %></h1>
     <br>
     <a ng-click="addNotebook()" class="waves-effect waves-light btn center"><%= __('Add new notebook') %></a>
   </div>
 
-  <div class="main container clearfix">
+  <div class="row">
+    <div class="main container clearfix">
     <!-- Notebooks card-->
-    <div class="card" ng-repeat="notebook in notebooks">
+    <div class="card s12 m12" ng-repeat="notebook in notebooks">
       <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" src="/images/evernote_header.jpg">
       </div>
@@ -44,7 +46,7 @@
           <div ng-class="{'editing-todo' : editing, 'edited' : todo.edited, 'completed' : todo.completed}" class="item" ng-repeat="todo in todos[notebook.id] | orderBy : 'completed' : true">
             <input type="checkbox" ng-model="todo.completed" />
             <span ng-click="todo.completed = !todo.completed"></span>
-            <label ng-click="editing = !editing" ng-hide="editing" type="text" >{{todo.title}}</label>
+            <label style="font-size: 1.25rem;" ng-click="editing = !editing" ng-hide="editing" type="text" >{{todo.title}}</label>
             <input ng-change="todo.edited = true" ng-blur="editing = false;" ng-show="editing" ng-model="todo.title" class="editing-label" />
             <div class="actions">
               <a href="" ng-click="saveTodo(todo)">save</a>
@@ -59,6 +61,7 @@
       </div>
     </div>
 
+  </div>
   </div>
 </div>
 
