@@ -6,7 +6,7 @@
 angular.module("notebookApp", [])
   .controller("MainController", function ($scope, $http) {
 
-    // $scope.userid = null;
+    $scope.userid = null;
     $scope.notebooks = [];
     $scope.todos = {};
 
@@ -47,8 +47,11 @@ angular.module("notebookApp", [])
         'title': "My new notebook",
         'owner': $scope.userid
       };
-      $http.post('/notebook/create', notebook).then(function (res) {
+      $http.post('/notebook/create', notebook).then(function (response) {
         console.log("A notebook was added");
+        notebook = response.data;
+      }, function (res) {
+        console.log("An error occurred when adding new notebook");
       });
       $scope.notebooks.unshift(notebook);
     };
@@ -79,9 +82,11 @@ angular.module("notebookApp", [])
         'content': "Lorem ipsum",
         'owner': notebook.id
       };
-      $http.post('/todo/create', todo).then(function (res) {
+      $http.post('/todo/create', todo).then(function (response) {
+        todo = response.data;
         console.log("A todo was added in the notebook " + notebook.id + "");
       });
+      $scope.todos[notebook.id].unshift(todo);
     };
 
     function getNotebookTodos(notebook_id) {
@@ -100,11 +105,11 @@ angular.module("notebookApp", [])
 
     $scope.deleteTodo = function (notebook_id, todo, index) {
       $http.delete('/todo/' + todo.id, todo).then(function (res) {
-        console.log("The todo was correctly deleted");
+        console.log("The todo in notebook "+ notebook_id +" was correctly deleted");
       }, function (res) {
         console.log("An error occurred in removal");
       });
-      // $scope.todos[notebook_id].splice(index, 1);
+      $scope.todos[notebook_id].splice(index, 1);
     };
 
   });

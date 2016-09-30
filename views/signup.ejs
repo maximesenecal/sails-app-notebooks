@@ -1,7 +1,62 @@
-<h1>Signup</h1>
-<form method="POST" action="/user">
-  <input type="email" name="email" placeholder="email">
-  <input type="password" name="password" placeholder="mot de passe">
-  <input type="text" name="username" placeholder="username">
-  <input type="submit" value="submit">
-</form>
+<div class="navbar-fixed">
+  <nav class="cyan darken-4" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo center">Neverwrite - Todo list with Sails</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/login"><%= __('Login') %></a></li>
+        <li><a href="/logout"><%= __('Logout') %></a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#"><a href="/login"><%= __('Login') %></a></a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+</div>
+
+<div class="container">
+  <div id="create-row" class="row">
+    <div id="create-list-login-container" class="row create-list-button">
+      <div class="col s12 create-list-login-right">
+        <div class="create-list-login-panel center">
+          <div>
+            <input type="hidden" name="new-list-name" class="new-list-name-hidden"/>
+            <div class="center">
+              <p class="flow-text">Créer un nouveau compte</p>
+            </div>
+            <form action="/user" method="post" class="col s12">
+              <div class="row">
+                <div class="col s12 input-field">
+                  <input id="email" name="email" type="email"/>
+                  <label for="email">Votre adresse mail</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s12 input-field">
+                  <input id="username" name="username" type="text"/>
+                  <label for="email">Pseudo</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s12 input-field">
+                  <input id="password" name="password" type="password"/>
+                  <label for="password">Choisissez un mot de passe</label>
+                </div>
+              </div>
+              <div class="row center">
+                <button type="submit" name="action" class="btn">Connexion</button>
+                <a href="/login/facebook" class="connect-btn button-facebook btn create-list-button indigo darken-1">Facebook</a>
+                <a href="/login/google" class="connect-btn button-google btn create-list-button red darken-1 disabled">Google</a>
+                <a href="#" class="connect-btn button-windows btn create-list-button blue darken-1 disabled">Twitter</a>
+              </div>
+            </form>
+          </div>
+          <div>Vous avez déjà un compte ?<a href="/login" class="modal-trigger"> Se connecter.</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="row center"><a href="/terms">Conditions d'utilisation</a></div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

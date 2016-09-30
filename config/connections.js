@@ -60,9 +60,16 @@ module.exports.connections = {
      adapter: 'sails-mongo',
      host: 'localhost',
      port: 27017,
-  //   user: 'username', //optional
-  //   password: 'password', //optional
-     database: 'resist-notebooks' //optional
+     database: 'resist-notebooks'
+  },
+
+  mLabMongodbServer: {
+      adapter: 'sails-mongo',
+      host: 'ds011472.mlab.com',
+      port: '11472',
+      user: 'maximesenecal',
+      password: 'ELZsT0ljt747',
+      database: 'heroku_n2rdh20m'
   }
 
   /***************************************************************************

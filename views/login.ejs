@@ -1,3 +1,20 @@
+<div class="navbar-fixed">
+  <nav class="cyan darken-4" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo center">Neverwrite - Todo list with Sails</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/login"><%= __('Login') %></a></li>
+        <li><a href="/logout"><%= __('Logout') %></a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#"><a href="/login"><%= __('Login') %></a></a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+</div>
+
+<div class="container">
 <div id="create-row" class="row">
   <div id="create-list-login-container" class="row create-list-button">
     <div class="col s12 create-list-login-right">
@@ -34,3 +51,7 @@
   </div>
   <div class="row center"><a href="/terms">Conditions d'utilisation</a></div>
 </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
