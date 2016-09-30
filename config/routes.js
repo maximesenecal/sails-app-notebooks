@@ -41,6 +41,7 @@ module.exports.routes = {
   },
 
   'post /login': 'AuthController.login',
+  'get /login/facebook': 'AuthController.facebook',
 
   'get /logout': 'AuthController.logout',
 
