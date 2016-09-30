@@ -1,6 +1,10 @@
 {
 	"Welcome": "Bienvenue",
 	"A brand new app.": "Une toute nouvelle application.",
-  "This is your notebooks": "Voici vos carnets de notes",
-  "You're looking at:": "Vous êtes ici:"
+  "Hello, this is your notebooks": "Bonjour, voici vos carnets de notes",
+  "You're looking at:": "Vous êtes ici:",
+  "Add new notebook": "Ajouter un nouveau carnet de notes",
+  "Add new todo": "Ajouter une nouvelle note",
+  "Login": "Connexion",
+  "Logout": "Déconnexion"
 }

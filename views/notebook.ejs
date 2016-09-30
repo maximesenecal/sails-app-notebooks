@@ -1,42 +1,63 @@
+<nav class="light-blue lighten-1" role="navigation">
+  <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Neverwrite</a>
+    <ul class="right hide-on-med-and-down">
+      <div ng-if="userid">
+        <li><a href="/logout"><%= __('Logout') %></a></li>
+      </div>
+    </ul>
+
+    <ul id="nav-mobile" class="side-nav">
+      <li><a href="#"><a href="/login"><%= __('Login') %></a></a></li>
+    </ul>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+  </div>
+</nav>
+
 <div class="default-page" ng-controller="MainController">
   <div class="header">
-    <h1 id="main-title" class="container"><%= __('This is your notebooks') %></h1>
-    <h3 class="container"><%= __("You're looking at:") %> <code><%= view.pathFromApp + '.' +view.ext %></code></h3>
+    <h1 id="main-title" class="container"><%= __('Hello, this is your notebooks') %></h1>
   </div>
 
   <div class="main container clearfix">
 
-    <div class="add">
-      <a ng-click="addNotebook()">+ Ajouter un notebook</a>
+    <div>
+      <a ng-click="addNotebook()" class="waves-effect waves-light btn"><%= __('Add new notebook') %></a>
     </div>
-
-    <div ng-class="{'editing-notebook' : editing }" ng-repeat="notebook in notebooks">
-      <div class="links clearfix">
-        <h3 ng-click="editing = !editing">{{ notebook.title }}</h3>
-        <input ng-show="editing" ng-blur="editing = false" ng-model="notebook.title"></input>
-
-          <ul class="link-list">
-            <h4>Todos</h4>
-
-                <div ng-repeat="todo in todos[notebook.id]">
-                  <a target="_blank" href="#"><li>{{ todo.title }}</li></a>
-                </div>
-
-            <a href="" ng-click="addTodo(notebook)">add new todo</a>
-
-            <h4>Informations sur le notebook</h4>
-            <li>{{ notebook.updatedAt }}</li>
-            <li>{{ notebook.createdAt }}</li>
-            <h4>Actions du notebook</h4>
+    <!-- Notebooks card-->
+    <div class="card" ng-repeat="notebook in notebooks">
+      <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="/images/evernote_header.jpg">
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">{{ notebook.title }}<i class="material-icons right">+</i></span>
+        <p>
+          <a href="" ng-click="saveNotebook(notebook)">Save</a>
+          <a href="" ng-click="editing = !editing">Edit</a>
+          <a href="" ng-click="deleteNotebook(notebook, $index)">Delete</a>
+        </p>
+      </div>
+      <div class="card-reveal">
+        <!-- Todos -->
+        <span class="card-title grey-text text-darken-4">{{ notebook.title }}<i class="material-icons right">X</i></span>
+        <div class="list">
+          <div ng-class="{'editing-todo' : editing, 'edited' : todo.edited, 'completed' : todo.completed }" class="item" ng-repeat="todo in todos[notebook.id] | orderBy : 'completed' : true">
+            <input type="checkbox" ng-model="todo.completed" />
+            <span ng-click="todo.completed = !todo.completed"></span>
+            <label ng-hide="editing" type="text" >{{todo.title}}</label>
+            <input ng-change="todo.edited = true" ng-blur="editing = false;" ng-show="editing" ng-model="todo.title" class="editing-label" />
             <div class="actions">
-              <a href="" ng-click="saveNotebook(notebook)">save</a>
+              <a href="" ng-click="saveTodo(todo)">save</a>
               <a href="" ng-click="editing = !editing">edit</a>
-              <a href="" ng-click="deleteNotebook(notebook, $index)">delete</a>
+              <a href="" ng-click="deleteTodo(notebook.id, todo, $index)">delete</a>
             </div>
-          </ul>
+          </div>
 
+          <a href="" ng-click="addTodo(notebook)"><%= __('Add new todo') %></a>
+        </div>
       </div>
     </div>
 
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

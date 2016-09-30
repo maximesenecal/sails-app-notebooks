@@ -1,6 +1,36 @@
-<h1>Login</h1>
-<form method="POST" action="/login">
-  <input type="email" name="email">
-  <input type="password" name="password">
-  <input type="submit" value="submit">
-</form>
+<div id="create-row" class="row">
+  <div id="create-list-login-container" class="row create-list-button">
+    <div class="col s12 create-list-login-right">
+      <div class="create-list-login-panel center">
+        <div>
+          <input type="hidden" name="new-list-name" class="new-list-name-hidden"/>
+          <div class="center">
+            <p class="flow-text">Connectez vous avec votre adresse mail</p>
+          </div>
+          <form action="/login" method="post" class="col s12">
+            <div class="row">
+              <div class="col s12 input-field">
+                <input id="email" name="email" type="email"/>
+                <label for="email">Votre adresse mail</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12 input-field">
+                <input id="password" name="password" type="password"/>
+                <label for="password">Choisissez un mot de passe</label>
+              </div>
+            </div>
+            <div class="row center">
+              <button type="submit" name="action" class="btn">Connexion</button>
+              <a href="/login/facebook" class="connect-btn button-facebook btn create-list-button indigo darken-1">Facebook</a>
+              <a href="/login/google" class="connect-btn button-google btn create-list-button red darken-1 disabled">Google</a>
+              <a href="#" class="connect-btn button-windows btn create-list-button blue darken-1 disabled">Twitter</a>
+            </div>
+          </form>
+        </div>
+        <div>Vous n'avez pas de compte ?<a href="/signup" class="modal-trigger"> Créer un compte.</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="row center"><a href="/terms">Conditions d'utilisation</a></div>
+</div>

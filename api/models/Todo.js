@@ -10,6 +10,7 @@ module.exports = {
   attributes: {
     title: 'STRING',
     content: 'STRING',
+    completed: 'boolean',
     // Reference to Notebook
     owner: {
       model: 'notebook'

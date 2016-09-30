@@ -6,17 +6,20 @@
 angular.module("notebookApp", [])
   .controller("MainController", function ($scope, $http) {
 
-    $scope.userid = null;
+    // $scope.userid = null;
     $scope.notebooks = [];
     $scope.todos = {};
 
-    //TODO: refresh or call automatically to load new notebooks from database
     activate();
 
     function activate() {
       $http.get('/user/current').then(function (response) {
-        $scope.userid = response.data;
-        getUserNotebooks($scope.userid);
+        if(response.data.error){
+          console.log(response.data.error);
+        }else{
+          $scope.userid = response.data;
+          getUserNotebooks($scope.userid);
+        }
       });
     }
 
@@ -34,10 +37,7 @@ angular.module("notebookApp", [])
         $scope.notebooks = response.data;
         for (var i = 0; i < response.data.length; i++) {
           getNotebookTodos(response.data[i].id);
-
         }
-        console.log('>>>>>>>>>>> todos', $scope.todos);
-
         console.log("Loading notebooks (User : " + user_id + ") from API !");
       });
     }
@@ -71,23 +71,8 @@ angular.module("notebookApp", [])
     };
 
     /*
-     * TODOS
+     * TODOS CRUD
      */
-
-    /*
-     * Get Notebooks from User
-     * Blueprint API populate where
-     * GET /:model/:id/:association
-     */
-    function getNotebookTodos(notebook_id) {
-
-      $http.get('/notebook/' + notebook_id + '/todos').then(function (response) {
-        // var todos = response.data;
-        $scope.todos[notebook_id] = response.data;
-        // return todos;
-      });
-    };
-
     $scope.addTodo = function (notebook) {
       var todo = {
         'title': "My new todo",
@@ -97,6 +82,29 @@ angular.module("notebookApp", [])
       $http.post('/todo/create', todo).then(function (res) {
         console.log("A todo was added in the notebook " + notebook.id + "");
       });
+    };
+
+    function getNotebookTodos(notebook_id) {
+      $http.get('/notebook/' + notebook_id + '/todos').then(function (response) {
+        $scope.todos[notebook_id] = response.data;
+      });
+    };
+
+    $scope.saveTodo = function (todo) {
+      $http.put('/todo/' + todo.id, todo).then(function (res) {
+        console.log("The todo was saved");
+      }, function (res) {
+        console.log("An error occurred during updating the todo " +todo.id);
+      });
+    };
+
+    $scope.deleteTodo = function (notebook_id, todo, index) {
+      $http.delete('/todo/' + todo.id, todo).then(function (res) {
+        console.log("The todo was correctly deleted");
+      }, function (res) {
+        console.log("An error occurred in removal");
+      });
+      // $scope.todos[notebook_id].splice(index, 1);
     };
 
   });

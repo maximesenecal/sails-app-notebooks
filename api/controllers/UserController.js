@@ -25,12 +25,13 @@ module.exports = {
   },
 
   current: function(req, res){
-    sails.log.debug("*******************/user/current");
     if(req.user) {
+      sails.log.debug("/user/current "+req.user.id);
       res.json(req.user.id)
     }
     else {
-      res.json({message: 'No login user'});
+      sails.log.debug("No login user");
+      res.json({error: 'No login user'});
     }
   }
 };
